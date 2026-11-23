@@ -1,0 +1,10 @@
+# Windows master volume acceptance checks (Windows 11)
+
+Use the configured inaudible virtual output as the Windows default playback device. Send a music track to it, start two known working relay outputs, and leave those outputs' own OS/hardware volume levels at a comfortable, constant setting.
+
+1. Move the Windows Quick Settings speaker slider from 100% to 50%, then 10%, then 0%. Both mirror outputs should get quieter together, and 0% should be silent. The source remains the virtual device and the app must not change the endpoints' Windows volume settings.
+2. At a nonzero slider value, mute and unmute via Windows or via media keys. Both outputs should mute and recover without restarting playback. Move the slider while the app is minimized.
+3. Set one route's **relative volume** to approximately 50%. The matching output should remain quieter as the Windows slider is moved, and the other route should not get individually quieter. Stop and restart; verify the saved relative trim is retained.
+4. Test an explicitly pinned source app separately. If its audio remains on the configured virtual source, switching the Windows default endpoint should make the relay follow the new default volume. If one relay peer becomes default, check that it is not attenuated twice. If the source app instead follows Windows to another endpoint, ordinary capture on the chosen virtual device no longer receives that audio; restore the virtual endpoint as the source app's destination. AudioRelay does not reroute Windows.
+5. Simulate temporary loss/unavailability of the default endpoint, then restore it and check that relay playback does not jump to full volume. While Windows volume cannot be read, the relay errs on the side of silence and resumes when it is readable again.
+6. Test the user's real USB, Bluetooth and virtual endpoint combination. This assumes Windows' normal pre-volume WASAPI loopback behavior. Some specialty hardware/driver loopback paths can behave differently and must be checked on hardware.

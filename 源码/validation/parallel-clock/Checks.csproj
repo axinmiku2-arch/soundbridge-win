@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- Only pure clock algorithms are executed by the cross-platform test. -->
+    <NoWarn>CA1416</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../ParallelPlaybackEngine.cs;../../AudioRoutePolicy.cs;../../Engine.cs;../../EngineAudio.cs;../../SynchronizedTimeline.cs;../../SystemMasterVolume.cs;../../MasterVolumeSnapshot.cs;../../AcousticCalibration.cs" />
+    <PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
+  </ItemGroup>
+</Project>
